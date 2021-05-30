@@ -609,6 +609,13 @@ with this hack and will try to convince the GCL crowd to fix this.
     #+(and :clisp :ffi) `(defun clisp-init-foreign-calls () ,@arguments)
 )
 
+#+:ecl
+(ext:with-backend :c/c++
+  (ffi:clines
+   "#include <com.h>"
+   "#include <cfuns-c.H1>"
+   "#include <sockio-c.H1>"))
+
 (foreign-defs
 
 (fricas-foreign-call |writeablep| "writeablep" int

@@ -118,6 +118,8 @@ do_it.ecl: fricas-lisp.lisp fricas-package.lisp fricas-config.lisp \
 		  fricas-lisp.o primitives.o) ")))" \
 	            >> fricas-ecl.lisp
 	echo "(defvar *fricas-initial-lisp-forms* nil)" >> fricas-ecl.lisp
+	echo "(require :cmp)"
+	echo "(setf c::*user-cc-flags* (concatenate 'string c::*user-cc-flags* \" -I$(BASE)/$(fricas_src_srcdir)/include/\"))" >> fricas-ecl.lisp
 	echo '(load "fricas-package.lisp")' \
 	     '(load "fricas-config.lisp")' \
 	     '(load "fricas-ecl.lisp")' \
