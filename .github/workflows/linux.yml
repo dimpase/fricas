@@ -11,9 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install dependencies
-      run: sudo apt-get install sbcl libgmp-dev libxpm-dev
+      run: sudo apt-get install sbcl libgmp-dev libxpm-dev autoconf automake libtool gettext
+    - name: bootstrap
+      run:  rm -f configure && ./build-setup.sh 
     - name: configure
-      run: ./configure --with-lisp=sbcl --with-gmp --with-x || cat config.log
+      run:  ./configure --with-lisp=sbcl --with-gmp --with-x || cat config.log
     - name: make
       run: make -j2 --output-sync
     - name: make check
